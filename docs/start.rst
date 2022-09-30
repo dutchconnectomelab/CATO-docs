@@ -88,3 +88,29 @@ At default, the pipelines gives an error when it notices that a subject has alre
     *   - ``overwrite``
         - Execute all steps including steps that finished successfully earlier.
 
+Parameters
+---------------
+Parameters for the structural and functional pipeline can be specified on the command line or in a configuration file in JSON-format. Parameters in the user-provided configuration file override the default parameters and parameters specified on the command line override both.
+
+Special parameters
+################
+Parameter values can also contain "special variables", which are in uppercase and replaced by a specific string when running CATO. 
+
+**Examples:**
+    1. The name of a parameter in capital letters (e.g. MINFA, DWIFILE or OUTPUTDIR). This special variable is replaced by the value of the referenced parameter. The following example shows how MINFA and OUTPUTDIR are used as special variables, resulting in a reconstructed fiber cloud file named ``DWI_processed/fibers_0.1.trk``:
+
+        .. code-block:: JSON
+
+            "reconstruction_fibers":{ 
+                "minFA": 0.1,       
+                "fiberFile": "OUTPUTDIR/fibers_MINFA.trk"      
+            }
+
+    2. SUBJECT: replaced by the subject name (the name of the directory containing the data).
+    3. TOOLBOXDIR: replaced by the location of the toolbox directory.
+    4. CONFIGDIR: replaced by the location of the directory containing the configuration file.
+    5. METHOD: In the structural pipeline, METHOD is replaced by the used reconstruction method, e.g. 'csd'. In the functional pipeline, METHOD is replaced by the :term:`methodDescription` of the used reconstruction method, e.g. 'scrubbed_0.01-0.1'.
+    6. TEMPLATE: replaced by the used template, e.g. 'lausanne120'.
+    7. MEASURE: replaced by the used diffusion measure, e.g. 'fractional anisotropy' (this special variable is only used when exporting diffusion measures to NifTi in the :ref:`reconstruction_diffusion` step).
+
+    **Note:** Two special variables must be seperated by a character  (e.g. 'a', '0' or '_') that is not a capital letter.
