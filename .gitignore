@@ -4,5 +4,6 @@ ehthumbs.db
 Thumbs.db
 # Other files
 public/
+_build/
 # include git-files
 !.git*
