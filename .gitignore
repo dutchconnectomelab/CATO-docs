@@ -1,0 +1,8 @@
+# ignore hidden files
+.*
+ehthumbs.db
+Thumbs.db
+# Other files
+public/
+# include git-files
+!.git*
