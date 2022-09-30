@@ -1,0 +1,25 @@
+name: "Pull Request Docs Check"
+on: 
+- pull_request
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Python dependencies
+      uses: py-actions/py-dependency-install@v3
+      with:
+        path: "requirements.txt"         
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        docs-folder: "."
+        build-command: "sphinx-build -b html . _build/html"
+    - name: Replace index file
+      run: |
+        sudo cp ./_index/index.html ./_build/html
+        sudo cp -r ./_index/assets ./_build/html        
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocumentationHTML
+        path: ./_build/html/
