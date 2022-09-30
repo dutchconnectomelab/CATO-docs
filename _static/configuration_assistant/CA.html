@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CATO configuration assistant</title>
+    <meta name="twitter:image" content="assets/img/header_matrix.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CATO: Structural and functional connectivity reconstruction">
+    <meta name="twitter:description" content="An integrative and modular software package for the reconstruction of structural and functional brain connectivity based on diffusion weighted imaging (DWI) and resting-state functional MRI (rs-fMRI) data.">
+    <meta name="description" content="Create configuration files for the structural (DWI) and functional (fMRI) brain connectivity reconstruction toolbox CATO.">
+    <link rel="icon" type="image/png" sizes="16x15" href="assets/img/CATOAsset%201@_16px.png">
+    <link rel="icon" type="image/png" sizes="32x30" href="assets/img/CATOAsset%201_32px.png">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/css/selectize.default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css">
+    <link rel="stylesheet" href="assets/css/pretty-print-json.css">
+</head>
+
+<body>
+    <div class="modal fade" role="dialog" tabindex="-1" id="fileselector">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="fileselectorLabel">Select FILE</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <div id="tree">
+                        <p>No file list was selected. First try to select your example subject directory.</p>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" id="selectFile" type="button" data-dismiss="modal">Choose file/folder</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="generated">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Generated configuration file</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p><button class="btn btn-primary" type="button">Download</button></p><code>{<br>&nbsp;&nbsp;"general":{<br>&nbsp;"fslRootDir":"/Applications/fsl/5.0.10",<br>&nbsp;"freesurferRootDir": "/Applications/freesurfer/6.0.0", <br>&nbsp;"parameterPropertiesFile": "structuralParameterProperties.xlsx",&nbsp;<br>&nbsp;"templates": ["aparc", "economo", "BB50human", "lausanne120", "lausanne250", "lausanne500"],<br>&nbsp;"reconstructionMethods": ["DTI", "CSD", "GQI", "GQI_DTI"],&nbsp;<br>&nbsp;"reconstructionSteps":{ <br>&nbsp;&nbsp;&nbsp;"structural_preprocessing": true,<br>&nbsp;&nbsp;&nbsp;"parcellation": true,<br>&nbsp;&nbsp;&nbsp;"collect_region_properties": true,<br>&nbsp;&nbsp;&nbsp;"reconstruction_diffusion": true,<br>&nbsp;&nbsp;&nbsp;"reconstruction_fibers": true,<br>&nbsp;&nbsp;&nbsp;"reconstruction_fiber_properties": true,<br>&nbsp;&nbsp;&nbsp;"reconstruction_network": true<br>&nbsp;}<br>}<br></code></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="helpModal">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Structural configuration assistant</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <div class="modal-body">
+                    <p>The structural configuration assistant helps you with filling in the most important variables in your configuration file.</p>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 150px;background-color: rgb(231,231,231);"><span style="color: rgb(166,166,166);font-weight: bold;">150 x 150</span></div>
+                                <p>1. To avoid typos, you can use an example subject directory from your own computer.<br><br><strong>Everything is done locally. </strong>No data is uploaded.</p>
+                            </div>
+                            <div class="col">
+                                <div class="mx-auto" style="width:150px"></div>
+                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 150px;background-color: rgb(231,231,231);"><span style="color: rgb(166,166,166);font-weight: bold;">150 x 150</span></div>
+                                <p>2. Fill in the form.</p>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex justify-content-center align-items-center rounded" style="height: 150px;background-color: rgb(231,231,231);"><span style="color: rgb(166,166,166);font-weight: bold;">150 x 150</span></div>
+                                <p>3. Select the Generate button and download your configuration file.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-primary" type="button" data-dismiss="modal">Let's start!</button></div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light navbar-expand sticky-top navigation-clean">
+        <div class="container"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <h1>Configuration assistant</h1>
+                <ul class="nav navbar-nav ml-auto"></ul>
+                <div class="btn-group btn-group-toggle config-toggle m-1" data-toggle="buttons"><label class="btn btn-primary active">Structural<input type="radio" name="options" checked=""></label><label class="btn btn-primary">Functional<input type="radio" name="options"></label></div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" data-spy="affix" data-offset-top="200">
+        <div class="row m-2">
+            <div class="col-md-12">
+                <p>Select an example subject from your computer below and use the <i class="fa fa-folder-open-o"></i>-button in the form to easily choose input files. The configuration assistant will automatically replace the subject name with the parameter
+                    SUBJECT. The pipeline recognizes variables called SUBJECT and replaces them with the subject directory such that the generated configuration file is applicable to all your subjects.&nbsp;&nbsp;</p>
+                <div class="row">
+                    <div class="col-6">
+                        <form>
+                            <div class="custom-file"><input type="file" id="files" class="custom-file-input" name="files[]" multiple="" webkitdirectory=""><label class="custom-file-label" for="files">SUBJECT<br></label><small>No data will actually be uploaded! The configuration assistant uses your own browser to generate configuration files (it even works if you are offline).</small></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="sticky-top" style="top:104px;">
+                    <div id="editor_holder" style="height: 4000px;"></div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="sticky-top" style="top: 104px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Generated configuration file</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="text-right d-xl-flex justify-content-xl-end"><button class="btn btn-outline-dark btn-sm m-1" id="copyButton" type="button" title="Copy to Clipboard" data-clipboard-target="#generatedJSON"><i class="fa fa-copy"></i>&nbsp;Copy</button><button class="btn btn-outline-dark btn-sm m-1"
+                                    id="downloadButton" type="button" title="Download as file"><i class="fa fa-download"></i>&nbsp;Download</button></form><small class="d-flex justify-content-end m-1" id="valid_indicator">checking</small><pre id="generatedJSON"></pre>
+                            <p
+                                class="text-right card-text m-0"></p>
+                                <p class="card-text">This is the configuration file! You can copy or download the file with the buttons at the top and run CATO with these parameters as is described on the Getting started page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/selectize@0.12.6/dist/js/standalone/selectize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+    <script src="assets/js/pretty-print-json.js"></script>
+    <script src="assets/js/CA.js"></script>
+    <script src="assets/js/filetree.js"></script>
+    <script src="assets/js/form.js"></script>
+</body>
+
+</html>

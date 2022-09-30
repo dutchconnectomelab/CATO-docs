@@ -1,0 +1,13 @@
+          {% block menu %}
+            <!-- <h4>{{ _('Table Of Contents') }}</h4> -->
+            {% set toctree = toctree(maxdepth=2, collapse=False, includehidden=False, titles_only=False) %}
+            {% if toctree %}
+              <div class="sidebartoctree">
+                {{ toctree }}
+              </div>
+            {% else %}
+                <!-- Local TOC -->
+                <div class="local-toc">{{ toc }}</div>
+            {% endif %}
+
+          {% endblock %}

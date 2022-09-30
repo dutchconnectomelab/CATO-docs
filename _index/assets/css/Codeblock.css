@@ -1,0 +1,20 @@
+.codeblock {
+  padding: 15px;
+  border: 1px solid #666;
+  background: #f4f4f4;
+  color: var(--primary);
+}
+
+.btn-group.btn-group-toggle.config-toggle {
+}
+
+.config-toggle > .btn {
+  background-color: #bbd8fb;
+  border-color: #bbd8fb;
+}
+
+.config-toggle .btn {
+  background-color: #bbd8fb;
+  border-color: #bbd8fb;
+}
+

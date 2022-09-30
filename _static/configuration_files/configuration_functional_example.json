@@ -1,0 +1,61 @@
+{
+	"general":{
+		"fslRootDir":"UPDATE_THIS",
+		"freesurferRootDir": "UPDATE_THIS", 		
+		"templates": ["aparc", "economo", "BB50human", "lausanne120", "lausanne250"],
+		"freesurferDir": "T1/SUBJECT_FS"
+	},
+	"functional_preprocessing":
+	{
+		"fmriFile": "fMRI/SUBJECT_fmri.nii.gz",
+		"sliceTimingCorrection":true,
+		"sliceTimerOptions": "",
+		"preprocessingScript": "TOOLBOXDIR/functional_preprocessing/preprocess_default.sh"
+	},
+	"reconstruction_functional_network":{
+		"methodDescription": "scrubbed_0.01-0.1",
+		"connectivityMatrixFile": "OUTPUTDIR/SUBJECT_connectivity_METHOD_TEMPLATE.mat",
+		"timeSeriesFile": "OUTPUTDIR/SUBJECT_time_series_METHOD_TEMPLATE.mat",
+		"minRepetitionTime": 100,
+		"regression":{
+			"regressionMask": [2, 41, 24],
+			"globalMeanRegression": false
+		},
+		"bandpass_filter":{
+			"filter": true,
+			"frequencies": [0.01, 0.1]
+		},
+		"scrubbing":{
+			"scrubbing": true,
+			"maxFD": 0.25, 
+			"maxDVARS": 1.5, 
+			"minViolations": 2,
+			"backwardNeighbors": 1,
+			"forwardNeighbors": 0
+		},
+		"saveTimeSeries": true
+	},
+	"reconstruction_functional_network":{
+		"methodDescription": "gmean_scrubbed_0.01-0.1",
+		"connectivityMatrixFile": "OUTPUTDIR/SUBJECT_connectivity_METHOD_TEMPLATE.mat",
+		"timeSeriesFile": "OUTPUTDIR/SUBJECT_time_series_METHOD_TEMPLATE.mat",
+		"minRepetitionTime": 100,
+		"regression":{
+			"regressionMask": [2, 41, 24],
+			"globalMeanRegression": true
+		},
+		"bandpass_filter":{
+			"filter": true,
+			"frequencies": [0.01, 0.1]
+		},
+		"scrubbing":{
+			"scrubbing": true,
+			"maxFD": 0.25, 
+			"maxDVARS": 1.5, 
+			"minViolations": 2,
+			"backwardNeighbors": 1,
+			"forwardNeighbors": 0
+		},
+		"saveTimeSeries": true
+	}	
+}

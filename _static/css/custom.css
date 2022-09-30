@@ -1,0 +1,202 @@
+@import url("http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic");
+@import url("https://use.typekit.net/jzr1ecy.css");
+
+/* Bugs and edits */
+
+:root {
+	--color-main: #34495e;
+	--color-red: #F44336;
+	--color-orange: #FF9100;
+	--color-yellow: #FFEA00;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-size: 1rem;
+	line-height: 1.75em;
+	color: var(--color-main);
+	-webkit-text-stroke: 0.1px;
+	/*margin-bottom: 10rem;  Margin bottom by footer height */
+}
+
+div.body p, div.body li
+{
+		line-height: 1.75em;
+}
+
+dl.p {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-size: 1rem;
+	line-height: 1em;
+}
+
+dl.glossary dt {
+		font-size: 1rem;
+}
+
+div.body h1
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 3em;
+	font-weight: 400; 
+	line-height: 1.2em;
+}
+
+div.body h2
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 2em;
+	font-weight: 400;
+	line-height: 2em;
+}
+
+div.body h3
+{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.2rem; 
+	font-weight: 400;
+}
+
+/*Tekst in (Warning) Notes*/
+div.admonition p.admonition-title
+{
+	font-family: 'Roboto', sans-serif;
+}
+
+.headerlink {
+    visibility: hidden;
+}
+
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink,
+dt:hover > a.headerlink,
+caption:hover > a.headerlink,
+p.caption:hover > a.headerlink,
+div.code-block-caption:hover > a.headerlink {
+    visibility: hidden;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+
+/*
+Sidebar styles
+*/
+
+#searchbox {
+    margin: 1;
+    display:none;
+}
+
+div.sphinxsidebar {
+    margin-left: 0px;
+    /*padding: 0px;*/
+    overflow: hidden;
+    /*white-space: nowrap;*/
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis; /* Safari */
+    -o-text-overflow: ellipsis; /* Opera */
+    font-size: 100%!important;
+}
+
+div.sphinxsidebar > div.sphinxsidebarwrapper {
+    display: block;
+    padding-left: 0px;
+    padding-right: 0px;
+    z-index: 1;
+}
+
+div.sphinxsidebarwrapper > div.sidebartoctree ul {
+/*     padding: .1em 0 0 1em; */
+    padding: 0;
+    margin:0;
+    border-right-width: 0;
+}
+
+div.sphinxsidebarwrapper > div.sidebartoctree li {
+/*     padding: .1em 0 0 1em; */
+    padding: 0;
+    margin:0;
+    border-right-width: 0;
+    border:0px;
+}
+
+dl dt {
+	font-weight:inherit;
+}
+
+div.sphinxsidebar > div.sphinxsidebarwrapper a.reference {
+    overflow: hidden;
+    /*white-space: nowrap;*/
+    text-overflow: ellipsis;
+    display: block;
+    padding: 0;
+}
+ 
+a.active a.current{
+    font-weight: bold;
+}
+
+div.sphinxsidebar > div.sphinxsidebarwrapper .toctree-l2 {
+padding: .1em 0 0 1em;
+}
+
+div.sphinxsidebar .nav-link:focus, div.sphinxsidebar .nav-link:hover, a:hover{
+	text-decoration:underline;
+	color:inherit; 
+}
+
+a.active, a.active:hover {
+	border-right: 2px solid;
+    color: var(--color-red) !important;
+    transition: color 0.3s;
+}
+
+div.sphinxsidebarwrapper a:hover{
+	text-decoration:underline;
+	color:inherit;
+}
+
+/* Vertical align elements in tbale.*/
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+ul.nav ul{ /* sidebaartreeview no list styles */
+    list-style: none!important;
+}
+
+div.sphinxsidebar > div.sphinxsidebarwrapper a.reference.current {
+    cursor: default;
+/* position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; */
+}
+
+.toggle .header {
+    display: block;
+    clear: both;
+}
+
+.toggle .header:after {
+    content: " +";
+}
+
+.toggle .header.open:after {
+    content: " -";
+}
+
+.toggle .header p{
+	display:inline;
+}
+
+.section .container {
+	padding: 0;
+}

@@ -1,0 +1,205 @@
+{
+  "title": " dd",
+  "type": "object",
+  "id": "general",
+  "properties": {
+    "general": {
+      "title": "Functional parameters",
+      "type": "object",
+      "properties":{
+        "fslRootDir": {
+          "title": "FSL installation directory",
+          "type": "string",
+          "description": "Directory where FSL is installed."
+        },
+        "freesurferRootDir": {
+          "title": "FreeSurfer installation directory",          
+          "type": "string",
+          "description": "Directory where FreeSurfer is installed."
+        },
+        "templates":{
+          "type": "array",
+          "uniqueItems": true,
+          "title": "Atlases",
+          "default": ["aparc", "lausanne120", "lausanne250"],
+          "items": {
+            "type": "string",
+            "enum": ["aparc", "lausanne120", "lausanne250", "lausanne500", "economo"]
+          }
+        },
+        "reconstructionSteps":{
+          "type": "array",
+          "title": "Reconstruction steps",
+          "uniqueItems": true,
+          "default": [
+              "functional_preprocessing", 
+              "parcellation", 
+              "collect_region_properties", 
+              "compute_motion_metrics", 
+              "reconstruction_functional_network"],
+          "format": "checkbox",
+          "items": {
+            "type": "string",
+            "enum": [
+              "functional_preprocessing", 
+              "parcellation", 
+              "collect_region_properties", 
+              "compute_motion_metrics", 
+              "reconstruction_functional_network"]
+          }
+        },
+        "freesurferDir": {
+          "type": "string",
+          "title": "Freesurfer directory",
+          "description": "Subject's processed Freesurfer directory."
+        },
+        "outputDir": {
+          "title": "Output directory",
+          "description": "Name of output directory",
+          "default": "fMRI_processed",
+          "type":"string"
+        }
+      }
+    },
+    "functional_preprocessing": {
+      "type": "object",
+      "title": "Functional preprocessing",
+      "properties":{
+        "fmriFile": {
+          "title":"Input rs-fMRI file",
+          "type": "string",
+          "description": "File with b-values of the DWI scans."
+        },
+        "sliceTimingCorrection": {
+          "title": "Run slicetimer flag",
+          "default": false,
+          "type": "boolean",
+          "description": "Flag whether slice timing should be corrected (using FSL sliceTimer)."
+        },    
+        "sliceTimerOptions": {
+          "title":"Slicetimer options",
+          "type": "string",
+          "description": "Additional input arguments for slicetimer."
+        },
+        "preprocessingScript": {
+          "title":"Preprocesing script",
+          "type": "string",
+          "description": "Optional input arguments for FSL slicetimer. The example preprocessing script executes the following code: 'slicetimer -i fmriFileInput -o fmriFileOutput sliceTimerOptions'",
+          "default": "TOOLBOXDIR/functional_preprocessing/preprocess_default.sh"
+        }  
+      }
+    },
+    "parcellation": {
+      "type": "object",
+      "title": "Parcellation",
+      "properties":{
+        "forceFreesurferOverwrite": {
+          "title": "Freesurfer overwrite flag",
+          "default": false,
+          "type": "boolean",
+          "description": "Flag whether the parcellation step should overwrite (if set to 'true') already existing Freesurfer files."
+        }
+      }      
+    },
+    "reconstruction_functional_network": {
+      "type":"object",
+      "title":"Network reconstruction",
+      "properties":{
+        "methodDescription": {
+          "type":"string",
+          "title":"Method description",
+          "default": "scrubbed_0.01-0.1"
+        },
+        "reconstructionMethod": {
+          "type":"string",
+          "title": "Reconstruction method",
+          "description":"Matlab function used to calculate functional connectivity strength",
+          "default": "corr"
+        },        
+        "saveTimeSeries": {
+          "type":"boolean",
+          "title":"Export time series flag",
+          "default": true,
+          "description": "Flag indicating whether time series are saved."
+        },        
+        "regression": {
+          "type":"object",
+          "title":"Regression step",
+          "properties":{
+            "regressionMask":{
+              "type": "string",
+              "title": "Regression mask",
+              "default": "24,2,41,251,252,253,254,255",
+              "description": "List of FreeSurfer region codes (from the standard segmentation map, aseg.mgz) of voxels that will be used as regressor. The average signal of voxels for each region code is included as a regressor."
+            },
+            "globalMeanRegression":{
+              "type":"boolean",
+              "title":"Perform global mean regression flag",
+              "description":"Flag whether global signal regression should be performed.",
+              "default": false
+            }
+          }
+        },
+        "bandpass_filter":{
+          "type":"object",
+          "title":"Bandpass filter step",
+          "properties":{
+            "filter":{
+              "type":"boolean",
+              "title": "Perform bandpass filtering flag",
+              "default":true,
+              "description":"Flag whether bandpass filtering should be performed."
+            },
+            "frequencies":{
+              "type":"string",
+              "title":"Frequencies",
+              "default":"0.01,0.1"
+            }
+          }
+        },
+        "scrubbing":{
+          "type":"object",
+          "title":"Scrubbing step",
+          "properties":{
+            "scrubbing":{
+              "type":"boolean",
+              "title": "Perform scrubbing flag",
+              "default":true,
+              "description":"Flag whether scrubbing should be performed."
+            },
+            "maxFD":{
+              "type":"number",
+              "title":"Maximum FD",
+              "default": 0.25,
+              "description":"Frames with FD higher than the maximum FD are indicated to contain a violation."
+            },
+            "maxDVARS":{
+              "type":"number",
+              "title":"Maximum DVARS",
+              "default": 1.5,
+              "description":"Frames with DVARS larger than Q3 + maxDVARS × IQR are indicated to contain a violation."
+            },
+            "minViolations":{
+              "type":"integer",
+              "title":"Minimum number of violations",
+              "default": 2,
+              "description":"Frames with a number of violations larger or equal to the minimum number of violations are considered to contain motion artifacts and scrubbed from further analyses."
+            },
+            "backwardNeighbors":{
+              "type":"integer",
+              "title":"Number of frames scrubbed backwards",
+              "default": 1,
+              "description":"Number of frames preceding a violating-frame that are also excluded from analyses."
+            },
+            "forwardNeighbors":{
+              "type":"integer",
+              "title":"Number of frames scrubbed forwards",
+              "default": 0,
+              "description":"Number of frames succeeding a violating-frame that are also excluded from analyses."
+            }              
+          }          
+        }
+      }
+    }    
+  }
+}

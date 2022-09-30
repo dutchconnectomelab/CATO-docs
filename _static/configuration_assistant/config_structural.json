@@ -1,0 +1,228 @@
+{
+  "title": " dd",
+  "type": "object",
+  "id": "general",
+  "properties": {
+    "general": {
+      "title": "General parameters",
+      "type": "object",
+      "properties":{
+        "fslRootDir": {
+          "title": "FSL installation directory",
+          "type": "string",
+          "description": "Directory where FSL is installed."
+        },
+        "freesurferRootDir": {
+          "title": "FreeSurfer installation directory",          
+          "type": "string",
+          "description": "Directory where FreeSurfer is installed."
+        },
+        "templates":{
+          "type": "array",
+          "uniqueItems": true,
+          "title": "Atlases",
+          "default": ["aparc", "lausanne120", "lausanne250"],
+          "items": {
+            "type": "string",
+            "enum": ["aparc", "lausanne120", "lausanne250", "lausanne500", "economo"]
+          }
+        },
+        "reconstructionMethods":{
+          "type": "array",
+          "title": "Reconstruction methods",
+          "default": ["DTI", "CSD", "GQI", "GQI_DTI", "CSD_DTI"],
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": ["DTI", "CSD", "GQI", "GQI_DTI", "CSD_DTI"]
+          }
+        },
+        "reconstructionSteps":{
+          "type": "array",
+          "title": "Reconstruction steps",
+          "uniqueItems": true,
+          "default": [
+              "structural_preprocessing", 
+              "parcellation", 
+              "collect_region_properties", 
+              "reconstruction_diffusion", 
+              "reconstruction_fibers", 
+              "reconstruction_fiber_properties", 
+              "reconstruction_network"],
+          "format": "checkbox",
+          "items": {
+            "type": "string",
+            "enum": [
+              "structural_preprocessing", 
+              "parcellation", 
+              "collect_region_properties", 
+              "reconstruction_diffusion", 
+              "reconstruction_fibers", 
+              "reconstruction_fiber_properties", 
+              "reconstruction_network"]
+          }
+        },
+        "freesurferDir": {
+          "type": "string",
+          "title": "Freesurfer directory",
+          "description": "Subject's processed Freesurfer directory."
+        },
+        "outputDir": {
+          "title": "Output directory",
+          "description": "Name of output directory",
+          "default": "DWI_processed",
+          "type":"string"
+        }
+      }
+    },
+    "structural_preprocessing": {
+      "type": "object",
+      "title": "Structural preprocessing",
+      "properties":{
+        "rawBvalsFile": {
+          "title":"Input b-values file",
+          "type": "string",
+          "description": "File with b-values of the DWI scans."
+        },
+        "rawBvecsFile": {
+          "title": "Input b-vectors file",
+          "type": "string",
+          "description": "File with b-vectors of the DWI scans."
+        },
+        "dwiFile": {
+          "title": "Input DWI file",
+          "type": "string",
+          "description": "DWI file in (gzip compressed) nifti format."
+        },
+        "dwiB0ReversedFile": {
+          "title": "(Optional) Reversed b0-weighted scans file",
+          "type": "string",
+          "description": "DWI dataset with b0-weighted scans with reversed phase encodings. If no reversed phase encoded scans are acquired this parameter can be left empty."
+        },
+        "dwiReversedFile": {
+          "title": "(Optional) Reversed DWI file",
+          "type": "string",
+          "description": "Full DWI dataset with scans with reversed phase encodings. If no reversed phase encoded scans are acquired this parameter can be left empty."
+        },
+        "preprocessingScript": {
+          "title": "Preprocessing script",
+          "type": "string",
+          "default": "TOOLBOXDIR/structural_preprocessing/preprocess_minimal.sh",
+          "description": "Bash script that is executed to run specific pre-processing steps on the input data."
+        },
+        "eddyVersion": {
+          "title": "Name of eddy executable",
+          "type": "string",
+          "default":"eddy",
+          "enum": ["eddy", "eddy_openmp", "eddy_cuda"],
+          "description": "Name of eddy executable specifying whether 'eddy', eddy_openmp' or 'eddy_cuda' should be used."
+        },
+        "revPhaseEncDim": {
+          "title": "Phase encoding direction",
+          "type": "integer",
+          "enum": [1, 2, 3],
+          "description": "Specify direction in which phase-encoding is performed. Direction matches the orientation of the DWI image. For example, if the DWI image is acquired in RAS orientation, then '1' indicates R->L phase encoding."
+        }
+      }      
+    },
+    "parcellation": {
+      "type": "object",
+      "title": "Parcellation",
+      "properties":{
+        "forceFreesurferOverwrite": {
+          "title": "Freesurfer overwrite flag",
+          "default": false,
+          "type": "boolean",
+          "description": "Flag whether the parcellation step should overwrite (if set to 'true') already existing Freesurfer files."
+        }
+      }      
+    },
+    "reconstruction_diffusion": {
+      "type": "object",
+      "title": "Diffusion reconstruction",
+      "properties":{
+        "exportNifti": {
+          "title": "Export diffusion measures",
+          "type": "object",
+          "properties":{
+            "exportNifti": {
+              "title": "Export diffusion measures",
+              "type": "boolean",
+              "default":"true",
+              "description": "Flag indicating pipeline exports NIFTI file with diffusion measurements."
+            },
+            "measures": {
+              "type": "array",
+              "uniqueItems": true,
+              "format": "selectize",
+              "default":["fractional anisotropy", "axial diffusivity", "radial diffusivity", "mean diffusivity"], 
+              "description": "List of diffusion measures that are exported in NIFTI format",
+              "options": {
+                "grid_columns": 6
+              },          
+              "items": {
+                "type": "string",
+                "enum": [
+                  "fractional anisotropy",
+                  "axial diffusivity",
+                  "radial diffusivity",
+                  "mean diffusivity"
+                ]
+              }
+            }        
+          }
+        }
+      } 
+    },
+    "reconstruction_fibers": {
+      "type": "object",
+      "title": "Fiber reconstruction",
+      "properties":{
+        "NumberOfSeedsPerVoxel": {
+          "title": "Number of seeds per voxel",
+          "default": 8,
+          "type": "integer"
+        },
+        "minFA": {
+          "title": "Minimum FA threshold",
+          "default": 0.1,
+          "type": "number"
+        },
+        "maxAngleDeg": {
+          "title": "Maximum angle threshold (in degrees)",
+          "default": 45,
+          "type": "number"
+        },     
+        "startRegions": {
+          "title": "Start regions",
+          "default": "2, 41, 251, 252, 253, 254, 255",
+          "type": "string",
+          "description": "List of region codes (from the standard segmentation map, aseg.mgz) of voxels from which fiber tracking will start."
+        },
+        "forbiddenRegions": {
+          "title": "Forbidden regions",
+          "default": "1, 6, 7, 8, 40, 45, 46, 47",
+          "type": "string",
+          "description": "List of region codes (from the standard segmentation map, aseg.mgz) of voxels, which if fibers that enter one of these regions then these fibers are not included in the reconstructed fiber cloud."
+        },
+        "stopRegions": {
+          "title": "Stop regions",
+          "default": "16, 28, 60",
+          "type": "string",
+          "description": "List of region codes (from the standard segmentation map, aseg.mgz) of voxels where fiber tracking will stop if the tracker enters these voxels."
+        }        
+      }      
+    },
+    "reconstruction_network": {
+      "type": "object",
+      "title": "Network reconstruction",
+      "properties":{
+        "minLengthMM": {
+          "title": "Minimum fiber length threshold (in millimeters)",
+          "type": "number",
+          "default": 0      
+        }    
+      }      
+    }                        
+  }
+}
