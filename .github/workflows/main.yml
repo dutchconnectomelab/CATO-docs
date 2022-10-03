@@ -1,4 +1,4 @@
-name: "Pull Request Docs Check"
+name: "Check and build HTML docs"
 on: 
 - pull_request
 - workflow_dispatch
