@@ -39,8 +39,37 @@ Script ``preprocess_topup_eddy.sh`` uses
 
 The script ``preprocess_eddy.sh`` performs the same steps except correction for susceptibility induced distortions using FSL topup. The minimal-preprocessing script ``preprocess_minimal.sh`` does not perform any DWI data corrections (see Table below).
 
-Users can use the example preprocessing scripts that fits best to their data, provide a completely custom preprocessing script, or exclude preprocessing all together and perform preprocessing separate from CATO (by excluding ``structural_preprocessing`` from the :term:`reconstructionSteps` parameter).
+.. toggle-header::
+    :header: **Show advanced notes**
 
+	1. The example scripts use by default `eddy_openmp <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/eddy/UsersGuide#The_eddy_executables>`_ executable. A different version of eddy can be specified in the :term:`eddyVersion` parameter.
+	2. Sometimes the b-values file (:term:`rawBvalsFile` or :term:`processedBvalsFile`) contains nonzero b-values for scans that are intended as diffusion unweighted b0-scans.  However, diffusion reconstruction methods (often) assume b-values equal to 0 for diffusion unweighted scans. The pipeline accomodates this by putting all b-values that are smaller or equal to :term:`bValueZeroThreshold` to 0.
+	3. The pipeline checks that the norm of all b-vectors is very close to one (i.e. all b-vectors are unit vectors). If the norm of any b-vector deviates from 1 more than :term:`bValueScalingTol`, then a warning is given on the command line. No b-value scaling or b-vector scaling is performed.
+
+.. _structural_custom_preprocessing_script:
+
+Custom preprocessing script
+################################################
+The user can also specify a custom preprocessing script using the :term:`preprocessingScript` configuration parameter. The custom preprocessing script will get all general and structural_preprocessing configuration parameters as input (in the form: ``--parameterName=parameterValue``). For example, when using the configuration parameters
+
+    .. code-block:: JSON
+
+		"structural_preprocessing":{ 
+			"dwiFile": "DTI/DTI.nii.gz",
+			"customParameter": "test",
+			"preprocessingScript": "CONFIGDIR/my_custom_script.sh"
+		}
+
+then the structural_preprocessing script executes the script ``my_custom_script.sh`` that is located in the same directory as the configuration file with ``customParameter`` as one of the input arguments:
+ 
+	.. code-block:: JSON
+
+		/some/directory/my_custom_scipt.sh \
+			--dwiFile="DTI/DTI.nii.gz" \
+			--customParameter="test" \
+			...other parameters...
+	
+**Tip:** Make sure that the custom preprocessing script is executable.
 
 .. list-table:: Overview of preprocessing steps in provided preprocessing scripts. 
 	:widths: 52 12 12 12 12
@@ -83,12 +112,6 @@ Users can use the example preprocessing scripts that fits best to their data, pr
 		- :yes:`yes`
 		- :unkown:`?`	 
 
-.. toggle-header::
-    :header: **Show advanced notes**
-
-	1. The example scripts use by default `eddy_openmp <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/eddy/UsersGuide#The_eddy_executables>`_ executable. A different version of eddy can be specified in the :term:`eddyVersion` parameter.
-	2. Sometimes the b-values file (:term:`rawBvalsFile` or :term:`processedBvalsFile`) contains nonzero b-values for scans that are intended as diffusion unweighted b0-scans.  However, diffusion reconstruction methods (often) assume b-values equal to 0 for diffusion unweighted scans. The pipeline accomodates this by putting all b-values that are smaller or equal to :term:`bValueZeroThreshold` to 0.
-	3. The pipeline checks that the norm of all b-vectors is very close to one (i.e. all b-vectors are unit vectors). If the norm of any b-vector deviates from 1 more than :term:`bValueScalingTol`, then a warning is given on the command line. No b-value scaling or b-vector scaling is performed.
 
 .. _anatomical_steps:
 

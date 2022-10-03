@@ -10,7 +10,7 @@ The functional connectivity pipeline builds upon the same modular organization a
 
 Preprocessing
 ----------------------------------------------------
-The preprocessing step :ref:`functional_preprocessing <functional_preprocessing>` provides users the option to preprocess rs-fMRI data with their preferred software package, specified by :term:`preprocessingScript`.
+The preprocessing step :ref:`functional_preprocessing <functional_preprocessing>` provides users the option to preprocess rs-fMRI data with their preferred software package, specified by :term:`preprocessingScript`. Further details on using a custom preprocessing script are provided in the structural pipeline section (see :ref:`Custom preprocessing script<structural_custom_preprocessing_script>`).
 
 CATO provides an example preprocessing script ``preprocess_default.sh`` that:
 	1. performs slice timing correction using FSL tool `sliceTimer <http://poc.vl-e.nl/distribution/manual/fsl-3.2/slicetimer/index.html>`_,
