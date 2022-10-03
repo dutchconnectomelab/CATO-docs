@@ -19,10 +19,12 @@ Example configuration files can be downloaded (or use the :ref:`online Configura
  	- :download:`Example functional configuration file <../_static/configuration_files/configuration_functional_example.json>`
  	- :download:`Example structural configuration file <../_static/configuration_files/configuration_structural_example.json>`
 
-Make sure to also check the additional software that is needed to run the pipeline: :ref:`Installation additional software`
+Additional software often used with CATO are described in the :ref:`Installation additional software` section.
 
 .. toggle-header::
     :header: **Release notes**
+
+    Older versions of CATO (executibles and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on Github <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
 
     - Version 3.1.2 (28 May 2021)
     	- Fixes minor issue that let MATLAB utilize all available computational threads, but which is undesirable when running multiple instances of CATO in parallel. This minor patch introduces the parameter :term:`maxNumberCompThreads` (default = 1) that lets the user set the maximum number of used computational threads.
