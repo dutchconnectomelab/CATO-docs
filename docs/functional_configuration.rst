@@ -95,6 +95,10 @@ functional_preprocessing step
 			:default: ``""``
 			:description: Optional input arguments for FSL slicetimer. The example preprocessing script executes the following code: "slicetimer -i fmriFileInput -o fmriFileOutput sliceTimerOptions".
 
+	fmriInfo	
+			:default: ``""``
+			:description: Adjust variables in the fmriProcessedFile header (using mri_convert). Options are provided as structure (e.g. fmriInfo:{"tr": TR in msec, "te": TE in msec}). If emtpy, header is not changed.
+
 	preprocessingScript	
 			:default: ``"TOOLBOXDIR/functional_preprocessing/preprocess_default.sh"``
 			:description: Bash script that will be executed to run pre-processing on the input data.
@@ -162,6 +166,10 @@ reconstruction_functional_network step
 	methodDescription	
 			:default: ``"scrubbed_0.01-0.1"``
 			:description: Name of reconstruction method. Can be referenced in other parameters with METHOD.
+
+	reconstructionMethod	
+			:default: ``"corr"``
+			:description: Functional connectivity estimation method used.
 
 	connectivityMatrixFile	
 			:default: ``"OUTPUTDIR/SUBJECT_connectivity_METHOD_TEMPLATE.mat"``

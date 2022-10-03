@@ -62,8 +62,7 @@ First, the regression step removes covariates (referred to as regressors) from t
 
 	**Optionally**, the mean signal intensity of all voxels in the brain can be included as an additional regressor to perform global mean correction (indicated by :term:`regression.globalMeanRegression`) :cite:`RN680`.
 
-
-Step 2. Bandpass filter (optional)
+Step 2. Bandpass filter (optional)m
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The next step is applying a band-pass filter to the rs-fMRI data (indicated by parameter :term:`bandpass_filter.filter`). Filtering frequencies aims to remove noise frequencies such as low frequencies that result from scanner drift, coil interference, slow motions or slow vascular oscillations as well as high frequencies that include artifacts from from breathing or heart beats (`More information <https://en.wikibooks.org/wiki/Neuroimaging_Data_Processing/Temporal_Filtering>`_). A standard zero-phase Butterworth bandpass filter is used with lower and higher cutoff frequencies set by the configuration parameter :term:`bandpass_filter.frequencies`.
 
@@ -78,7 +77,7 @@ where IQR refers to the the interquartile range IQR = Q3 – Q1, with Q1 and Q3 
 
 Step 4. Correlation Analysis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Functional connectivity is computed between brain regions (specified by the :term:`ROIsFile`) as the Pearson’s correlation of the average signal intensity of these regions across the selected frames. Connectivity matrices are saved to the file :term:`connectivityMatrixFile` and time series of each region are saved to the file :term:`timeSeriesFile`.
+Functional connectivity is estimated between brain regions (specified by the :term:`ROIsFile`) as the correlation coefficient of the average signal intensity of these regions across the selected frames. The correlation measure is specified by the :term:`reconstructionMethod` parameter and can be MATLAB functions such as `corr` (Pearson's correlation coefficient (default)) or `partialcorr` (partial correlation coefficient). Connectivity matrices are saved to the file :term:`connectivityMatrixFile` and time series of each region are saved to the file :term:`timeSeriesFile`.
 
 
 
