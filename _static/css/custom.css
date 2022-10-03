@@ -1,23 +1,29 @@
-@import url("http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic");
+@import url("http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500");
 @import url("https://use.typekit.net/jzr1ecy.css");
 
 /* Bugs and edits */
 
 :root {
-	--color-main: #34495e;
+	--color-main: rgb(60, 65, 90);
 	--color-red: #F44336;
 	--color-orange: #FF9100;
 	--color-yellow: #FFEA00;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
+/*	font-family: 'Roboto';
 	font-weight: 300;
 	font-size: 1rem;
-	line-height: 1.75em;
+	line-height: 1.75em;*/
 	color: var(--color-main);
-	-webkit-text-stroke: 0.1px;
+
 	/*margin-bottom: 10rem;  Margin bottom by footer height */
+
+	font-family: 'Roboto';
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 1.5;	
+	-webkit-text-stroke: 0.1px;
 }
 
 div.body p, div.body li
@@ -26,7 +32,7 @@ div.body p, div.body li
 }
 
 dl.p {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 	font-weight: 300;
 	font-size: 1rem;
 	line-height: 1em;
@@ -38,23 +44,23 @@ dl.glossary dt {
 
 div.body h1
 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 	font-size: 3em;
-	font-weight: 400; 
+	font-weight: 500; 
 	line-height: 1.2em;
 }
 
 div.body h2
 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 	font-size: 2em;
-	font-weight: 400;
+	font-weight: 500;
 	line-height: 2em;
 }
 
 div.body h3
 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 	font-size: 1.2rem; 
 	font-weight: 400;
 }
@@ -62,7 +68,7 @@ div.body h3
 /*Tekst in (Warning) Notes*/
 div.admonition p.admonition-title
 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Roboto';
 }
 
 .headerlink {
@@ -88,7 +94,16 @@ a {
 }
 
 dd {
-	margin-left: 3rem;
+	margin-left:  20px;
+}
+
+.reference.external{
+	text-decoration: underline;
+}
+
+.reference.internal{
+	text-decoration-style: dashed;
+	text-decoration: underline;
 }
 
 /*
@@ -156,6 +171,10 @@ padding: .1em 0 0 1em;
 div.sphinxsidebar .nav-link:focus, div.sphinxsidebar .nav-link:hover, a:hover{
 	text-decoration:underline;
 	color:inherit; 
+}
+
+.reference.internal.nav-link{
+	text-decoration: none;
 }
 
 a.active, a.active:hover {
