@@ -11,7 +11,7 @@ $(document).ready(function() {
                document.createElement("a")
            );
            a.download = "CATO_configuration.json";
-           textToWrite = JSON.stringify(myData, null, 4).replace(/\n/g, "%0D%0A"); 
+           textToWrite = JSON.stringify(configVars, null, 4).replace(/\n/g, "%0D%0A"); 
            a.href = "data:text/plain," + textToWrite;
            a.click(); //Trigger a click on the element
     })
@@ -35,10 +35,6 @@ $(document).ready(function() {
       .next(".custom-file-label")
       .html(filenames.join(","));
   });
-});
-
-$(document).ready(function() {
-    $('#generatedJSON').html(prettyPrintJson.toHtml(myData));
 });
 
 $('#fileselector').on('show.bs.modal', function (e) {
