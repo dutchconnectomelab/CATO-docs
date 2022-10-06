@@ -4,7 +4,7 @@
 Installation 
 =================
 
-Download 
+Download
 --------------------
  
 Compiled binaries of the latest toolbox version:
@@ -12,7 +12,7 @@ Compiled binaries of the latest toolbox version:
 .. raw:: html
 	:file: ../_static/emailform.html
 
-and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_.
+and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/CATO>`_.
 
 Example configuration files can be downloaded (or use the :ref:`online Configuration Assistant <configuration assistant>`):
  
@@ -120,9 +120,4 @@ The third required software package is FreeSurfer. Downloads and instructions ar
 
 	http://www.freesurfer.net/fswiki/DownloadAndInstall
 
-The pipeline is tested with FreeSurfer version 6.0.0. Using newest FreeSurfer release ( > v7.0.0) results in a known error when using the example preprocessing scripts. The example preprocessing scripts try to clean-up the intermediate files produced by ``bbregister``, but the name of the log-file produced by ``bbregister`` in version 7.0.0. changed. As a result when the pipeline tries to delete the log-file (using the old name), it cannot be deleted resulting in an error. In the next version of CATO, the preprocessing scripts will be updated, for now this error can be fixed by deleting the following line from the preprocessing script::
-
-	rm "$registrationMatrixFile".{mincost,param,sum,log}
-
-This **does not affect** the processing in any way, it justs results in more files in the output directory.
-
+The pipeline is tested with FreeSurfer version 7.2.0.
