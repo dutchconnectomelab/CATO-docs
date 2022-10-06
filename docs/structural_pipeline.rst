@@ -52,17 +52,19 @@ Custom preprocessing script
 ################################################
 The user can also specify a custom preprocessing script using the :term:`preprocessingScript` configuration parameter. The custom preprocessing script will get all general and structural_preprocessing configuration parameters as input (in the form: ``--parameterName=parameterValue``). For example, when using the configuration parameters
 
-    .. code-block:: JSON
+    .. code-block:: json
 
-		"structural_preprocessing":{ 
-			"dwiFile": "DTI/DTI.nii.gz",
-			"customParameter": "test",
-			"preprocessingScript": "CONFIGDIR/my_custom_script.sh"
-		}
+	    {
+	        "structural_preprocessing":{ 
+	            "dwiFile": "DTI/DTI.nii.gz",
+	            "customParameter": "test",
+	            "preprocessingScript": "CONFIGDIR/my_custom_script.sh"
+	        }
+	    }
 
 then the structural_preprocessing script executes the script ``my_custom_script.sh`` that is located in the same directory as the configuration file with ``customParameter`` as one of the input arguments:
  
-	.. code-block:: JSON
+	.. code-block:: 
 
 		/some/directory/my_custom_scipt.sh \
 			--dwiFile="DTI/DTI.nii.gz" \
@@ -194,14 +196,17 @@ Comparing the four reconstruction methods, DTI is a robust and simple method, wh
 
 Export diffusion measures to NIFTI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The :ref:`reconstruction_diffusion` step provides the user with the additional option to export diffusion measures to a NIFTI volume file :term:`diffusionMeasuresFileNifti <exportNifti.diffusionMeasuresFileNifti>`. To export fractional anisotropy, axial diffusivity, radial diffusivity and mean diffusivity measures to a file, add the following parameters to the ``reconstruction_diffusion`` section in the configuration file::
+The :ref:`reconstruction_diffusion` step provides the user with the additional option to export diffusion measures to a NIFTI volume file :term:`diffusionMeasuresFileNifti <exportNifti.diffusionMeasuresFileNifti>`. To export fractional anisotropy, axial diffusivity, radial diffusivity and mean diffusivity measures to a file, add the following parameters to the ``reconstruction_diffusion`` section in the configuration file:
 
-	"exportNifti":{
-		"exportNifti": true,
-		"measures": ["fractional anisotropy", "axial diffusivity", "radial diffusivity", "mean diffusivity"],
-		"diffusionMeasuresFileNifti": "OUTPUTDIR/SUBJECT_MEASURE.nii.gz"
-	}
+	.. code-block:: json
 
+		{
+			"exportNifti":{
+				"exportNifti": true,
+				"measures": ["fractional anisotropy", "axial diffusivity", "radial diffusivity", "mean diffusivity"],
+				"diffusionMeasuresFileNifti": "OUTPUTDIR/SUBJECT_MEASURE.nii.gz"
+			}
+		}
 
 .. _reconstruction_fibers:
 
