@@ -231,9 +231,4 @@ Brain imaging data structured according to the BIDS format is organized consiste
 
 fMRI preprocessing with Melodic + Fix
 -----------------------------------------------------
-Artifacts can be removed from the fMRI data using using an independent component analysis (ICA) approach in which the fMRI signal is decomposed into ICA components and "noise" components (including motion, non-neural physiological and scanner artifacts) are removed. An example preprocessing script for this approach using `FSL Fix<https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIX>`_ and `FSL Melodic<https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/MELODIC>`_ is provided on the `GitHub repository <https://github.com/dutchconnectomelab/CATO/blob/b308a583392b92765507241703562b2b7ddd0594/src/functional_preprocessing/preprocess_ICAFIX.sh>`_. This example preprocessing script is currently in development and can be discussed in the associated `pull request <https://github.com/dutchconnectomelab/CATO/pull/22>`_.
-
-
-
-
-
+Artifacts can be removed from the fMRI data using using an independent component analysis (ICA) approach in which the fMRI signal is decomposed into ICA components and "noise" components (including motion, non-neural physiological and scanner artifacts) are removed. An example preprocessing script for this approach using `FSL Fix <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIX>`_ and `FSL Melodic <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/MELODIC>`_ is provided on the `GitHub repository <https://github.com/dutchconnectomelab/CATO/blob/b308a583392b92765507241703562b2b7ddd0594/src/functional_preprocessing/preprocess_ICAFIX.sh>`_. This example preprocessing script is currently in development and can be discussed in the associated `pull request <https://github.com/dutchconnectomelab/CATO/pull/22>`_.
