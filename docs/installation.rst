@@ -12,7 +12,7 @@ Compiled binaries of the latest toolbox version:
 .. raw:: html
 	:file: ../_static/emailform.html
 
-and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/CATO>`_.
+and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato>`_.
 
 Example configuration files can be downloaded (or use the :ref:`online Configuration Assistant <configuration assistant>`):
  
@@ -24,7 +24,16 @@ Additional software often used with CATO are described in the :ref:`Installation
 .. toggle-header::
     :header: **Release notes**
 
-    Older versions of CATO (executibles and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on Github <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
+    Older versions of CATO (binaries and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on GitHub <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
+
+    - Version 3.2.0 (30 November 2022)
+   	- Introduces a test framework for continuous integration.
+		- Lets users specify the functional connectivity measure (e.g. Pearson correlations or Pearson partial correlations).
+		- Preprocessing scripts are now compatible with FreeSurfer version 7.
+		- Removes dependencies on FreeSurfer and FSL in the MATLAB functions. FreeSurfer and FSL are now only used in the preprocessing and parcellation scripts that are provided by the user.
+		- Fixes various bugs (e.g. in the readTrk function, the iRESTORE threshold assistant).
+		- Improves various features (e.g. error handling and the check on the toolboxes installed in MATLAB).
+		- Full Changelog: https://github.com/dutchconnectomelab/CATO/commits/v3.2.0
 
     - Version 3.1.2 (28 May 2021)
     	- Fixes minor issue that let MATLAB utilize all available computational threads, but which is undesirable when running multiple instances of CATO in parallel. This minor patch introduces the parameter :term:`maxNumberCompThreads` (default = 1) that lets the user set the maximum number of used computational threads.
