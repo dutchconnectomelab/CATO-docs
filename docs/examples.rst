@@ -20,7 +20,7 @@ This example processes Subject 0001 using the ``preprocess_eddy.sh`` preprocessi
 
 The following configuration file provides the minimum parameters that need to be specified. Copy the text and save it in a file (e.g. ``/Volumes/Example/CATO.conf``).
 
-    .. code-block:: JSON
+    .. code-block:: 
 
         {
             "general":{
@@ -132,7 +132,7 @@ Functional processing example
 --------------------------------------
 This example processes EXAMPLESUBJECT using the ``preprocess_default.sh`` preprocessing script. This preprocessing script performs a.o. slice time correction, motion correction, and mapping of the T1 parcellation to the rs-fMRI image (see :ref:`functional_preprocessing`). The following configuration file provides the minimum parameters to run the functional pipeline (including applying a bandpass filter and scrubbing). Copy the text and save it in a file (e.g. ``/Volumes/Example/CATO_functional.conf``).
 
-    .. code-block:: JSON
+    .. code-block:: json
 
         {
             "general":{
@@ -193,3 +193,42 @@ To run the functional pipeline with this configuration file:
             functional_pipeline(subjectDir, ...
                 'configurationFile', configurationFile);
 
+BIDS formatted data
+-----------------------------
+Brain imaging data structured according to the BIDS format is organized consistently, making it easy to process such datasets with CATO. Datasets will differ in their acquisition and scanner parameters, so makes it always important to adjust the configuration file to the dataset used. Parameters that are often the same for BIDS datasets are listed below. In this example, FreeSurfer reconstructions are expected in the `derivatives` subfolder of the dataset and the output of CATO will go into this `derivatives` folder as well.
+
+**Structural pipeline**
+
+.. code-block:: json
+
+    {    
+        "general":{
+            "derivativesDir":"../derivatives",
+            "freesurferDir": "DERIVATIVESDIR/freesurfer/SUBJECT",
+            "outputDir": "DERIVATIVESDIR/cato_structural/SUBJECT"
+        },
+        "structural_preprocessing": {
+            "rawBvalsFile": "ses-1/dwi/SUBJECT_ses-1_dwi.bval",
+            "rawBvecsFile": "ses-1/dwi/SUBJECT_ses-1_dwi.bvec",
+            "dwiFile": "ses-1/dwi/SUBJECT_ses-1_dwi.nii.gz"
+        }
+    }
+
+**Functional pipeline**
+
+.. code-block:: json
+
+    {
+        "general":{
+            "derivativesDir":"../derivatives",
+            "freesurferDir": "DERIVATIVESDIR/freesurfer/SUBJECT",
+            "outputDir": "DERIVATIVESDIR/cato_functional/SUBJECT"
+        },
+       "functional_preprocessing": {
+           "fmriFile": "SUBJECT/ses-1/func/SUBJECT_ses-1_task-rest_bold.nii.gz"
+       }
+   }
+
+fMRI preprocessing with Melodic + Fix
+-----------------------------------------------------
+Artifacts can be removed from the fMRI data using using an independent component analysis (ICA) approach in which the fMRI signal is decomposed into ICA components and "noise" components (including motion, non-neural physiological and scanner artifacts) are removed. An example preprocessing script for this approach using `FSL Fix <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIX>`_ and `FSL Melodic <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/MELODIC>`_ is provided on the `GitHub repository <https://github.com/dutchconnectomelab/CATO/blob/b308a583392b92765507241703562b2b7ddd0594/src/functional_preprocessing/preprocess_ICAFIX.sh>`_. This example preprocessing script is currently in development and can be discussed in the associated `pull request <https://github.com/dutchconnectomelab/CATO/pull/22>`_.

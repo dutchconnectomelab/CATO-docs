@@ -1,3 +1,9 @@
 body {
 }
 
+a {
+  color: rgb(37, 49, 183);
+  text-decoration: none;
+  background-color: transparent;
+}
+

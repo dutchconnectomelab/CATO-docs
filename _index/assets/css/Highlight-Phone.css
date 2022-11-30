@@ -1,6 +1,6 @@
 .highlight-phone {
   color: #313437;
-  background-color: #eef4f7;
+  background-color: #F7FAFC;
   padding: 50px 0 55px;
   overflow: hidden;
 }
@@ -63,7 +63,7 @@
 }
 
 .highlight-phone .intro .btn-primary {
-  background-color: #055ada;
+  background-color: rgb(37 49 183 );
   color: #fff;
 }
 
