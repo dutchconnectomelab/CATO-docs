@@ -12,7 +12,7 @@ Compiled binaries of the latest toolbox version:
 .. raw:: html
 	:file: ../_static/emailform.html
 
-and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato>`_.
+and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato/tags>`_.
 
 Example configuration files can be downloaded (or use the :ref:`online Configuration Assistant <configuration assistant>`):
  
@@ -25,6 +25,10 @@ Additional software often used with CATO are described in the :ref:`Installation
     :header: **Release notes**
 
     Older versions of CATO (binaries and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on GitHub <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
+
+    - Version 3.2.1 (13 February 2023)
+    	- Fixes fMRI bandpass filter artefacts at the beginning and end of the filtered rs-fMRI time series.
+    	- Full Changelog: https://github.com/dutchconnectomelab/CATO/compare/v3.2.0...v3.2.1
 
     - Version 3.2.0 (30 November 2022)
    	- Introduces a test framework for continuous integration.
