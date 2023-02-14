@@ -26,6 +26,10 @@ Additional software often used with CATO are described in the :ref:`Installation
 
     Older versions of CATO (binaries and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on GitHub <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
 
+    - Version 3.2.1 (13 February 2023)
+    	- Fixes fMRI bandpass filter artefacts at the beginning and end of the filtered rs-fMRI time series.
+    	- Full Changelog: https://github.com/dutchconnectomelab/CATO/compare/v3.2.0...v3.2.1
+
     - Version 3.2.0 (30 November 2022)
    	- Introduces a test framework for continuous integration.
 		- Lets users specify the functional connectivity measure (e.g. Pearson correlations or Pearson partial correlations).
