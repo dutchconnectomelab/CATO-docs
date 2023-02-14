@@ -12,7 +12,7 @@ Compiled binaries of the latest toolbox version:
 .. raw:: html
 	:file: ../_static/emailform.html
 
-and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato>`_.
+and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato/tags>`_.
 
 Example configuration files can be downloaded (or use the :ref:`online Configuration Assistant <configuration assistant>`):
  
