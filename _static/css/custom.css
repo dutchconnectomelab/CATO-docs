@@ -26,6 +26,10 @@ body {
 	-webkit-text-stroke: 0.1px;
 }
 
+li {
+	font-style: normal;
+}
+
 div.body p, div.body li
 {
 		line-height: 1.75em;
