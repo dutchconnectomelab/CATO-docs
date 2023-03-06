@@ -54,6 +54,27 @@ With the following parameters:
             :MATLAB: ``'general.freesurferDir', 'T1/SUBJECT_FS'``
             :description: Configuration parameters that overwrite the default values and values specified in the configuration file.
 
+Docker
+------------------------------
+The CATO toolbox can be run from a Docker container by following these steps:
+
+1. First, download and install Docker from https://www.docker.com.
+2. Download the most recent CATO Docker image. The latest Docker image can be found on `Docker hub <https://hub.docker.com/r/dutchconnectomelab/cato/tags>`_ and can be downloaded from this website or from the command line by running the following command::
+
+    docker pull dutchconnectomelab/cato:v3.2.1
+
+3. Run the following command to start the Docker container and link it to subject data located in the ``/Volumes/Example`` directory::
+
+    docker run --rm -t -i \
+        --mount type=bind,source="/Volumes/Example/",target=/mnt/Example \
+        cato:v3.2.1
+
+4. To process a subject ``0001`` run the following commands::
+ 
+    structural_pipeline -s /mnt/Example/0001 \
+        -m /opt/MCR-2017b/v93 \
+        --configurationFile=/mnt/Example/CATO.conf
+
 Running a subject again
 ------------------------------
 At default, the pipelines gives an error when it notices that a subject has already been (partly) processed. Use the ``runType`` parameter to determine the behavior when re-running a subject:
