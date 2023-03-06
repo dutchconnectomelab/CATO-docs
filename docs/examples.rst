@@ -232,3 +232,50 @@ Brain imaging data structured according to the BIDS format is organized consiste
 fMRI preprocessing with Melodic + Fix
 -----------------------------------------------------
 Artifacts can be removed from the fMRI data using using an independent component analysis (ICA) approach in which the fMRI signal is decomposed into ICA components and "noise" components (including motion, non-neural physiological and scanner artifacts) are removed. An example preprocessing script for this approach using `FSL Fix <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FIX>`_ and `FSL Melodic <https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/MELODIC>`_ is provided on the `GitHub repository <https://github.com/dutchconnectomelab/CATO/blob/b308a583392b92765507241703562b2b7ddd0594/src/functional_preprocessing/preprocess_ICAFIX.sh>`_. This example preprocessing script is currently in development and can be discussed in the associated `pull request <https://github.com/dutchconnectomelab/CATO/pull/22>`_.
+
+Cortical reconstruction with FreeSurfer
+-----------------------------------------------------
+The CATO toolbox requires cortical reconstructions from preprocessed T1 data. This preprocessing can be achieved using `FreeSurfer <https://freesurfer.net>`_, a widely used software package for analyzing neuroimaging data. The following steps can be used to add cortical reconstruction using FreeSurfer to the preprocessing step in CATO:
+
+
+1. Copy a template preprocessing script (e.g. ``preprocess_minimal.sh``) and name it ``preprocess_FreeSurfer.sh``.
+2. Make sure that the new preprocessing script is executable by running the following command in the terminal:
+
+.. code-block:: bash
+
+    chmod 700 "preprocess_FreeSurfer.sh"
+
+
+3. Add the following code to the input argument parser in the preprocessing script:
+
+.. code-block:: bash
+
+    --t1File=*)
+    t1File=${1#*=}
+    shift       
+    ;;        
+
+4. Add the following code to the begining of the preprocessing script (after the line "``parse_input "$@"``"):
+
+.. code-block:: bash
+
+    # run FreeSurfer
+    oldDir=$(pwd)
+    cd $(dirname $freesurferDir)
+    recon-all -i "${oldDir}/${t1File}" -s $(basename ${freesurferDir}) -autorecon-all
+    cd "$oldDir"
+
+5. Add a parameter ``t1File`` to the ``structural_preprocessing`` or ``functional_preprocessing`` section of the configuration file and update the preprocessing script.
+
+.. code-block:: json
+
+    {
+        "structural_preprocessing":{
+            "t1File":"T1/SUBJECT_T1.nii.gz",
+            "preprocessingScript":"TOOLBOXDIR/functional_preprocessing/preprocess_FreeSurfer.sh"
+        }
+   }    
+
+6. CATO will now run FreeSurfer in the preprocessing step!
+
+**Note**: For computational reasons, it is often beneficial to run FreeSurfer and CATO seperately.
