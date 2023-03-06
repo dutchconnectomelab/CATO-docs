@@ -265,6 +265,14 @@ The CATO toolbox requires cortical reconstructions from preprocessed T1 data. Th
     recon-all -i "${oldDir}/${t1File}" -s $(basename ${freesurferDir}) -autorecon-all
     cd "$oldDir"
 
+An overview of the edits is provided in the following figure:
+
+.. image:: ../images/preprocessing_FreeSurfer.png
+    :scale: 20%
+
+
+  ⠀
+
 5. Add a parameter ``t1File`` to the ``structural_preprocessing`` or ``functional_preprocessing`` section of the configuration file and update the preprocessing script.
 
 .. code-block:: json
