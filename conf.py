@@ -52,7 +52,7 @@ html_static_path = ['_static', '_static/css'] # Add all folders such that css is
 html_theme_options = {
     'navbar_links' : [
         ("GitHub", "https://github.com/dutchconnectomelab/CATO", True),
-        ("Dutch Connectome Lab", "http://www.dutchconnectomelab.nl", True)
+        ("Dutch Connectome Lab", "https://www.dutchconnectomelab.nl", True)
     ],
     'sidebar_right': False,
     'sidebar_fixed': True,
@@ -67,10 +67,6 @@ html_favicon = 'images/CATO_32px.png'
 
 html_css_files = [
 	'css/custom.css']
-
-html_js_files = [
-    'js/cloudflare.js'
-    ]
 
 rst_prolog= u"""
     .. |project| replace:: sphinxbootstrap4
