@@ -20,6 +20,8 @@ author = 'Dutch Connectome Lab'
 
 # -- General configuration ---------------------------------------------------
 
+master_doc = 'sitemap'
+
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -35,7 +37,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_sidebars = {'**' : ['globaltoc.html']}
+html_sidebars = {'**' : ['globaltoc.html', 'searchbox.html']}
 
 html_theme = 'sphinxbootstrap4theme'
 html_theme_path = ['_theme']

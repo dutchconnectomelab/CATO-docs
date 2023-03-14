@@ -119,6 +119,15 @@ Sidebar styles
     display:none;
 }
 
+div.sphinxsidebar input {
+	border-color: #6c757d;
+	border-radius: 0.25rem;
+}
+
+ul.search li {
+	background-image: none;
+}
+
 div.sphinxsidebar {
     margin-left: 0px;
     /*padding: 0px;*/
