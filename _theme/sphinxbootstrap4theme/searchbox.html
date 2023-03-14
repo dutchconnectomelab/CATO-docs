@@ -1,10 +1,19 @@
 {%- if pagename != "search" %}
 <div id="searchbox" style="display: none">
-    <form class="form search" action="{{ pathto('search') }}" method="get">
-      <input type="text" name="q" class="form-control" placeholder="Search..." />
+  <form id="searchbox-form" class="form search" action="{{ pathto('search') }}" method="get">
+
+    <div class="input-group mb-3">
+      <input type="text" name="q" class="form-control" placeholder="Search..." aria-label="search">      
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
-    </form>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" onClick="function submitForm(){document.getElementById('searchbox-form').submit()}; submitForm()">    <i class="bi bi-search"></i>
+        </button>
+      </div>
+
+    </div>
+  </form>
+
 </div>
 
 <script type="text/javascript">$('#searchbox').show(0);</script>
