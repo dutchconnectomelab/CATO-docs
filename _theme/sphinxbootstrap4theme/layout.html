@@ -17,6 +17,7 @@
      {{ super() }}
      <script type="text/javascript" src="{{ pathto('_static/bootstrap-4.3.1-dist/js/bootstrap.min.js', 1) }}"></script>
      <script type="text/javascript" src="{{ pathto('_static/sphinxbootstrap4.js', 1) }}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
  {%- endblock %}
 
 {%- macro sphinxsidebar() %}
@@ -88,7 +89,7 @@
     <div class="row">
       {%- block sidebar1 %} {% if theme_show_sidebar|tobool and not theme_sidebar_right|tobool %}{{ sphinxsidebar() }}{% endif %} {% endblock %}
 
-      <div class="document">
+      <div class="document" role="main">
       {%- block document %}
       <div class="documentwrapper">
       {%- if render_sidebar %}
