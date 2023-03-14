@@ -1,11 +1,8 @@
 .. CATO documentation master file
+.. This index file lets Sphinx create the toctree. During the build this file is replaced by the index file in the folder `_index`.
 
-Hi!    
+Sitemap
 ================================
-This index file lets Sphinx create the toctree. During the build this file is replaced by the index file in the folder `_index`.
-
-Overview
---------------
 
 .. toctree::
    :maxdepth: 2
