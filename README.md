@@ -33,6 +33,5 @@ cp -r ./_index/assets ./_build/html
 **GitHub Actions:** HTML documentation can also be generated using the workflow ["Check and build HTML docs"](https://github.com/dutchconnectomelab/CATO-docs/actions/workflows/main.yml). This workflow is automatically triggered when a pull request is made. This workflow can also be triggered manually using the `Run workflow` button on the workflow page.
 
 ## Citation
-> [Structural and functional connectivity reconstruction with CATO - A Connectivity Analysis TOolbox](https://www.biorxiv.org/content/10.1101/2021.05.31.446012v1)
->
-> de Lange SC, van den Heuvel MP, bioRxiv, 2021
+> [Structural and functional connectivity reconstruction with CATO-A Connectivity Analysis TOolbox](https://doi.org/10.1016/j.neuroimage.2023.120108) \
+> Siemon C. de Lange, Koen Helwegen, and Martijn P. van den Heuvel -  *NeuroImage*, 2023
