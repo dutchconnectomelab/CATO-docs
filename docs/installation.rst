@@ -7,53 +7,24 @@ Installation
 Download
 --------------------
  
-Compiled binaries of the latest toolbox version:
+**CATO executable:** Download the compiled binaries of the latest CATO version from the following links:
 
 .. raw:: html
 	:file: ../_static/emailform.html
 
-and all source code is available on `the GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_. CATO is also available as Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato/tags>`_.
+**Source code**: Access the source code of CATO from the `GitHub repository <https://github.com/dutchconnectomelab/CATO/>`_.
 
-Example configuration files can be downloaded (or use the :ref:`online Configuration Assistant <configuration assistant>`):
+**Docker image:** CATO is also available as a Docker image on `Docker Hub <https://hub.docker.com/r/dutchconnectomelab/cato/tags>`_.
+
+**Example configuration files:** Example configuration files can be downloaded from the links below (or use the :ref:`online Configuration Assistant <configuration assistant>` to customize your own configuration file):
  
  	- :download:`Example functional configuration file <../_static/configuration_files/configuration_functional_example.json>`
  	- :download:`Example structural configuration file <../_static/configuration_files/configuration_structural_example.json>`
 
-Additional software often used with CATO are described in the :ref:`Installation additional software` section.
+**Additional software:** Additional software, such as MATLAB MCR, FreeSurfer and FSL, are (often) needed for connectome processing with CATO. Refer to the :ref:`Installation additional software` section for more details.
 
-.. toggle-header::
-    :header: **Release notes**
+**Archived versions:** Older versions of CATO, along with their associated release notes, are available from the `CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_.
 
-    Older versions of CATO (binaries and source-code) can be downloaded from `the CATO repository on Github <https://github.com/dutchconnectomelab/CATO/releases>`_ and older versions of this documentation website (corresponding to older CATO versions) can be downloaded from `the CATO docs repository on GitHub <https://github.com/dutchconnectomelab/CATO-docs/releases>`_ .
-
-    - Version 3.2.1 (13 February 2023)
-    	- Fixes fMRI bandpass filter artefacts at the beginning and end of the filtered rs-fMRI time series.
-    	- Full Changelog: https://github.com/dutchconnectomelab/CATO/compare/v3.2.0...v3.2.1
-
-    - Version 3.2.0 (30 November 2022)
-   	- Introduces a test framework for continuous integration.
-		- Lets users specify the functional connectivity measure (e.g. Pearson correlations or Pearson partial correlations).
-		- Preprocessing scripts are now compatible with FreeSurfer version 7.
-		- Removes dependencies on FreeSurfer and FSL in the MATLAB functions. FreeSurfer and FSL are now only used in the preprocessing and parcellation scripts that are provided by the user.
-		- Fixes various bugs (e.g. in the readTrk function, the iRESTORE threshold assistant).
-		- Improves various features (e.g. error handling and the check on the toolboxes installed in MATLAB).
-		- Full Changelog: https://github.com/dutchconnectomelab/CATO/commits/v3.2.0
-
-    - Version 3.1.2 (28 May 2021)
-    	- Fixes minor issue that let MATLAB utilize all available computational threads, but which is undesirable when running multiple instances of CATO in parallel. This minor patch introduces the parameter :term:`maxNumberCompThreads` (default = 1) that lets the user set the maximum number of used computational threads.
-
-    - Version 3.1.1 (22 March 2021)
-    	- Fixes minor issue that caused in some configurations a "non-existent field" error. This is a minor patch does not affect any MRI processing. This error can also be fixed by adding a variable that specifies the lutFile in the collect_region_properties step in the configuration file:  ::
-
-    		"collect_region_properties":{
-			"lutFile": "TEMPLATESDIR/TEMPLATE/TEMPLATE.annot.ctab"
-    		}
-
-    - Version 3.1 (16 March 2021)
-    	- Memory usage is reduced in the diffusion reconstruction step when correcting for gradient nonlinearities.
-    	- Fixes an issue with the lausanne parcellations that nodes are incorrectly ordered and labeled. This issue affected only version 3.0 and the lausanne120, lausanne250 and lausanne500 parcellations (the Desikan-Killiany, aparc, parcellation is not affected).
-    	- Fiber tracker seeds are now better distributed and compatible with high-quality DWI data.
-    	- The CSD and DTI diffusion reconstruction methods are further improved to give better diffusion profile reconstructions.
 
 Installation executable
 ------------------------------------------------------------
